@@ -1,12 +1,12 @@
 import styles from "./page.module.css";
 
-export default function Home() {
+export default async function page() {
   return (
     <>
       <div className={styles.text}>
-        <p>
-          Welcome to AC-LinkedIn. Here, you'll be able to connect within the AC community.
-        </p>
+        <h1 className={styles.heroText}>
+          Welcome to AC-LinkedIn.
+        </h1>
       </div>
     </>
   );

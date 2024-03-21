@@ -7,6 +7,9 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
+  // there may be a type error here, but it's acceptable:
+  // note the difference between auth/prisma-adapter and next-auth/prisma-adapter
   adapter: PrismaAdapter(prisma),
   providers: [
     EmailProvider({
@@ -28,12 +31,17 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     session: async ({ session, user }) => {
       session.user = {
-        name: user.name,
+        email: user.email,
       };
       return session;
     },
     async signIn({ user }) {
-      return true;
+      const email = user.email ?? ''
+      const check = await prisma.emailWhitelist.findFirst({ where: { email } })
+      if (!check) {
+        return false
+      }
+      return true
     }
   },
 }

@@ -1,25 +1,24 @@
-// test nodemailer
 require('dotenv').config(); 
 const nodemailer = require("nodemailer");
 
 console.log(process.env.SMTP_PASSWORD)
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  secure: true, // true for 465, false for other ports
   auth: {
-    user: "reyesleeyh@gmail.com",
+    user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASSWORD,
   },
 });
 
 async function main() {
   const info = await transporter.sendMail({
-    from: process.env.SMTP_FROM, // sender address
-    to: "reyesleeyh2@gmail.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    html: "<b>Hello world?</b>", // html body
+    from: process.env.SMTP_FROM,
+    to: "reyesleeyh2@gmail.com", // can be list
+    subject: "Test from AC-LinkedIn",
+    html: "<b>Hello world?</b>",
   });
 
   console.log("Message sent: %s", info.messageId);

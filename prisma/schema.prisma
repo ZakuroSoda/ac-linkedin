@@ -16,18 +16,24 @@ model Session {
 }
 
 model VerificationToken {
-  identifier String   @unique
+  identifier String
   token      String   @unique
   expires    DateTime
+
   @@unique([identifier, token], name: "identifier_token")
 }
 
 model User {
   id            Int       @id @default(autoincrement())
   name          String?
-  email         String   @unique
-  emailVerified DateTime @map(name: "email_verified")
+  email         String    @unique
+  emailVerified DateTime  @map(name: "email_verified")
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
   Session       Session[]
+}
+
+model EmailWhitelist {
+  id    Int    @id @default(autoincrement())
+  email String @unique
 }

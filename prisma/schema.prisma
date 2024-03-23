@@ -25,15 +25,32 @@ model VerificationToken {
 
 model User {
   id            Int       @id @default(autoincrement())
-  name          String?
   email         String    @unique
   emailVerified DateTime  @map(name: "email_verified")
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
   Session       Session[]
+  Profile       Profile[]
 }
 
 model EmailWhitelist {
   id    Int    @id @default(autoincrement())
   email String @unique
+}
+
+model Profile {
+  id           Int     @id @default(autoincrement())
+  userId       Int
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name         String?
+  pronouns     String?
+  headline     String?
+  industry     String?
+  education    String?
+  acsEducation String? @map(name: "acs_education")
+  experience   String?
+  skills       String?
+  location     String?
+  website      String?
+  phone        String?
 }

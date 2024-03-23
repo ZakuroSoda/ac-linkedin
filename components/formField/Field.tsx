@@ -1,5 +1,9 @@
 import styles from "./Field.module.css"
 
+/**
+ * @param {onChange} onChange - Takes in event.target and handles the change in parent component
+ */
+
 export default function Field({
   label, id, name, type, value, onChange, required, options
 }: {
@@ -20,7 +24,7 @@ export default function Field({
           id={id}
           name={name}
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target)}
           required={required}
         >
           {options && Object.keys(options).map((key) => (
@@ -44,7 +48,7 @@ export default function Field({
           placeholder=" "
           autoComplete="off"
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target)}
           required={required}
         />
         <label className={styles.fieldLabel} htmlFor={id}>

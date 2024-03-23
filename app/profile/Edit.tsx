@@ -7,7 +7,28 @@ import Button from "@/components/formButton/Button"
 import countries from "countries-list/minimal/countries.en.min.json"
 
 export default function LoginForm() {
-  const [gex, setGex] = useState('')
+  const [data, setData] = useState({
+    name: "",
+    pronouns: "",
+    headline: "",
+    industry: "",
+    education: "",
+    acsEducation: "",
+    experience: "",
+    skills: "",
+    location: "",
+    website: "",
+    phone: "",
+  })
+
+  const handleChange = (target: any) => {
+    const { name, value } = target
+    setData({
+      ...data,
+      [name]: value,
+    })
+    console.log(data)
+  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -24,8 +45,8 @@ export default function LoginForm() {
               id="name"
               name="name"
               type="text"
-              value={gex}
-              onChange={setGex}
+              value={data.name}
+              onChange={handleChange}
               required={false}
             />
           </div>
@@ -35,8 +56,8 @@ export default function LoginForm() {
               id="pronouns"
               name="pronouns"
               type="dropdown"
-              value={gex}
-              onChange={setGex}
+              value={data.pronouns}
+              onChange={handleChange}
               required={false}
               options={{m: "He/Him", f: "She/Her", t: "They/Them", o: "Other"}}
             />
@@ -47,8 +68,8 @@ export default function LoginForm() {
               id="headline"
               name="headline"
               type="text"
-              value={gex}
-              onChange={setGex}
+              value={data.headline}
+              onChange={handleChange}
               required={false}
             />
           </div>
@@ -58,8 +79,8 @@ export default function LoginForm() {
               id="industry"
               name="industry"
               type="text"
-              value={gex}
-              onChange={setGex}
+              value={data.industry}
+              onChange={handleChange}
               required={false}
             />
           </div>
@@ -69,19 +90,19 @@ export default function LoginForm() {
               id="education"
               name="education"
               type="text"
-              value={gex}
-              onChange={setGex}
+              value={data.education}
+              onChange={handleChange}
               required={false}
             />
           </div>
           <div className={styles.editFormRow}>
             <Field
-              label="ACSI Education - Class of XXXX"
+              label="Graduation Year from ACSI"
               id="acsEducation"
               name="acsEducation"
-              type="text"
-              value={gex}
-              onChange={setGex}
+              type="number"
+              value={data.acsEducation}
+              onChange={handleChange}
               required={false}
             />
           </div>
@@ -91,8 +112,8 @@ export default function LoginForm() {
               id="experience"
               name="experience"
               type="text"
-              value={gex}
-              onChange={setGex}
+              value={data.experience}
+              onChange={handleChange}
               required={false}
             />
           </div>
@@ -102,8 +123,8 @@ export default function LoginForm() {
               id="skills"
               name="skills"
               type="text"
-              value={gex}
-              onChange={setGex}
+              value={data.skills}
+              onChange={handleChange}
               required={false}
             />
           </div>
@@ -113,8 +134,8 @@ export default function LoginForm() {
               id="location"
               name="location"
               type="dropdown"
-              value={gex}
-              onChange={setGex}
+              value={data.location}
+              onChange={handleChange}
               required={false}
               options={countries}
             />
@@ -125,8 +146,8 @@ export default function LoginForm() {
               id="website"
               name="website"
               type="text"
-              value={gex}
-              onChange={setGex}
+              value={data.website}
+              onChange={handleChange}
               required={false}
             />
           </div>
@@ -136,8 +157,8 @@ export default function LoginForm() {
               id="phone"
               name="phone"
               type="number"
-              value={gex}
-              onChange={setGex}
+              value={data.phone}
+              onChange={handleChange}
               required={false}
             />
           </div>

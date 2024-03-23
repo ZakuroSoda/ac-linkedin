@@ -46,7 +46,7 @@ export default function LoginForm() {
               name="email"
               type="text"
               value={email}
-              onChange={setEmail}
+              onChange={(target: any) => setEmail(target.value)}
               required={true}
             />
           </div>

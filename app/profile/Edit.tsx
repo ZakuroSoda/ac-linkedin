@@ -4,6 +4,7 @@ import { toast } from "react-toastify"
 import styles from "./Edit.module.css"
 import Field from "@/components/formField/Field"
 import Button from "@/components/formButton/Button"
+import countries from "countries-list/minimal/countries.en.min.json"
 
 export default function LoginForm() {
   const [gex, setGex] = useState('')
@@ -33,10 +34,11 @@ export default function LoginForm() {
               label="Pronouns"
               id="pronouns"
               name="pronouns"
-              type="text"
+              type="dropdown"
               value={gex}
               onChange={setGex}
               required={false}
+              options={{m: "He/Him", f: "She/Her", t: "They/Them", o: "Other"}}
             />
           </div>
           <div className={styles.editFormRow}>
@@ -110,10 +112,11 @@ export default function LoginForm() {
               label="Current Location"
               id="location"
               name="location"
-              type="text"
+              type="dropdown"
               value={gex}
               onChange={setGex}
               required={false}
+              options={countries}
             />
           </div>
           <div className={styles.editFormRow}>

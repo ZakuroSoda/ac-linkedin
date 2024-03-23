@@ -3,6 +3,8 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 import { signIn } from "next-auth/react"
 import styles from "./LoginForm.module.css"
+import Field from "@/components/formField/Field"
+import Button from "@/components/formButton/Button"
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
@@ -33,31 +35,24 @@ export default function LoginForm() {
   }
   return (
     <>
-      <div className={styles.Login}>
+      <div className={styles.login}>
         <div className={styles.loginHeader}>Login</div>
         <div className={styles.loginDesc}>A magic login link will be sent to your inbox, if your email is in our whitelist.</div>
         <form className={styles.loginForm} onSubmit={(e) => handleLogin(e)}>
           <div className={styles.loginFormRow}>
-            <input
-              className={styles.loginFormInput}
-              type="text"
+            <Field
+              label="Email"
               id="email"
               name="email"
-              placeholder=" "
-              autoComplete="off"
+              type="text"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              onChange={setEmail}
+              required={true}
             />
-            <label className={styles.loginFormLabel} htmlFor="email">
-              Email
-            </label>
           </div>
-          
           <div className={styles.loginFormRow}>
-            <button type="submit" className={styles.loginFormSubmit}>Login</button>
+            <Button text="Submit" />
           </div>
-
         </form>
       </div>
     </>
